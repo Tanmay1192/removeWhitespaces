@@ -23,7 +23,6 @@ char *remove_whitespaces(char* RESTRICT string, char* RESTRICT out_string, char 
   NDTL4(trace_log_key, NULL, TL_INFO, "Method called");
   if(string == NULL)//|| tampering_mode != NOT_TRIM_ORIGNAL || tampering_mode != TRIM_ORIGNAL)
   { 
-    NDTL0(trace_log_key, NULL, TL_ERROR, "Invalid input is passed");
     return NULL; 
   } 
   int i;
@@ -38,7 +37,6 @@ char *remove_whitespaces(char* RESTRICT string, char* RESTRICT out_string, char 
   {
     if(sizeof(out_string) < sizeof(string))
     {
-      NDTL0(trace_log_key, NULL, TL_ERROR, "Second field pass i.e output buffer is of less size than original");
       return NULL;
     }
     else
@@ -50,9 +48,8 @@ char *remove_whitespaces(char* RESTRICT string, char* RESTRICT out_string, char 
 
   else if(tampering_mode & TRIM_ORIGNAL)
     untrim = string;
-      else
+  else
   {
-    NDTL0(trace_log_key, NULL, TL_ERROR, "Check 2nd and 4th argument field");
     return NULL;
   }
 
@@ -91,7 +88,6 @@ char *remove_whitespaces(char* RESTRICT string, char* RESTRICT out_string, char 
   if(operation == FROM_START || operation == ALL || operation == (FROM_START|FROM_END))
      untrim[start_count] = '\0';
 
-  NDTL4(trace_log_key, NULL, TL_INFO, "Method Exit");
   return untrim;
 }
 
